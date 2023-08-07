@@ -5,7 +5,7 @@
 #### <a href="https://youtu.be/LlCfcsOQoxA" target="_blank" rel="noopener noreferrer">Veja um vídeo demonstrativo</a>
 
 #### Como usar
-**Criar umas pasta chamada temp na pasta public**</br>
+**Criar uma pasta chamada temp na pasta public**</br>
 **Depois, é preciso somente instalar as bibliotecas e rodar o servidor na pasta pública para o funcionamento da aplicação.**
 
     composer install
