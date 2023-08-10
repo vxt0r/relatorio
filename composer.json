@@ -1,5 +1,5 @@
 {
-    "name": "vitor/phpmailer",
+    "name": "vitor/gerador_relatorio",
     "require": {
         "dompdf/dompdf": "^2.0",
         "phpoffice/phpspreadsheet": "^1.29"
