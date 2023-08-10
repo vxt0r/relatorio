@@ -1,6 +1,6 @@
 <?php 
 
-namespace Source\ReportsFormat;
+namespace app\classes;
 
 class CashFlowReport{
 
@@ -90,4 +90,3 @@ class CashFlowReport{
         return round(($profit_year/$annual_expense)*100,2);
     }
 }
-?>

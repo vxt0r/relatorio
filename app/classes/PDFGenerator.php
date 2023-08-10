@@ -1,6 +1,6 @@
 <?php 
 
-namespace Source\Support;
+namespace app\classes;
 
 use Dompdf\Dompdf;
 use Dompdf\Options;
@@ -68,4 +68,3 @@ class PDFGenerator {
         unlink(self::TEMP_PATH.'/cash_flow_report.html');
     }
 }
-?>

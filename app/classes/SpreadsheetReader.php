@@ -1,6 +1,6 @@
 <?php 
 
-namespace Source\Support;
+namespace app\classes;
 
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
@@ -28,6 +28,5 @@ class SpreadsheetReader {
     }    
    
 }
-?>
 
 

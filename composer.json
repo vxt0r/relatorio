@@ -6,7 +6,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Source\\": "src/"
+            "app\\": "app",
+            "MF\\" : "vendor/MF"
         }
     },
     "authors": [
