@@ -9,3 +9,4 @@ vendor/phpoffice
 vendor/psr
 vendor/sabberworm
 vendor/autoload.php
+composer.lock
