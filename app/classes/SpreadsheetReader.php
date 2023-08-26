@@ -19,10 +19,10 @@ class SpreadsheetReader {
     * @param string
     * @return array 
     */
-    public function getXlsxData($path)
+    public function getXlsxData($filename)
     {
         $this->xlsx->setReadDataOnly(true);
-        $spreadsheet = $this->xlsx->load($path);
+        $spreadsheet = $this->xlsx->load(PATH['temp'].'/'.$filename);
         $sheet = $spreadsheet->getSheet($spreadsheet->getFirstSheetIndex());
         return $sheet->toArray();    
     }    

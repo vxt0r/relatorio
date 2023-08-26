@@ -5,6 +5,7 @@ namespace app\classes;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
+ 
 class PDFGenerator {
 
     /**
@@ -16,16 +17,6 @@ class PDFGenerator {
      * @var Options
      */
     private $options;
-
-    /**
-     * @var string
-     */
-    private const TEMPLATES_PATH = __DIR__.'/../../public/templates';
-
-     /**
-     * @var string
-     */
-    private const TEMP_PATH = __DIR__.'/../../public/temp';
     
     public function __construct() {
         $this->options = new Options();
@@ -40,17 +31,17 @@ class PDFGenerator {
      */
     private function cashFlowHTMLReport($data)
     {
-        copy(self::TEMPLATES_PATH.'/cash_flow.html',self::TEMP_PATH.'/cash_flow_template.html');
-        $html = file_get_contents(self::TEMP_PATH.'/cash_flow_template.html');
+        copy(PATH['templates'].'/cash_flow.html',PATH['temp'].'/cash_flow_template.html');
+        $html = file_get_contents(PATH['temp'].'/cash_flow_template.html');
 
         foreach($data as $field=>$value){
             $html = str_replace($field,$value,$html);
         }
 
-        $report_html = fopen(self::TEMP_PATH.'/cash_flow_report.html','w');
+        $report_html = fopen(PATH['temp'].'/cash_flow_report.html','w');
         fwrite($report_html,$html);
         fclose($report_html);
-        unlink(self::TEMP_PATH.'/cash_flow_template.html');
+        unlink(PATH['temp'].'/cash_flow_template.html');
     }
 
     /**
@@ -58,13 +49,24 @@ class PDFGenerator {
      * @param string
      * @return void
      */
-    public function generatePDF($data,$name)
+    public function generatePDF($data,$new_name,$default_name)
     {
+        $default_name = explode('.',$default_name)[0];
         $this->cashFlowHTMLReport($data);
-        $this->dompdf->loadHtmlFile(self::TEMP_PATH.'/cash_flow_report.html');
+        $this->dompdf->loadHtmlFile(PATH['temp'].'/cash_flow_report.html');
         $this->dompdf->setPaper('A4', 'landscape');
         $this->dompdf->render();
-        $this->dompdf->stream($filename=$name);
-        unlink(self::TEMP_PATH.'/cash_flow_report.html');
+        $this->dompdf->stream($filename=$this->reportName($new_name,$default_name));
+        unlink(PATH['temp'].'/cash_flow_report.html');
+    }
+
+    /**
+     * @param string
+     * @param string
+     * @return string
+     */
+    private function reportName($new_name,$default_name)
+    {
+        return $new_name ? $new_name : $default_name;
     }
 }
